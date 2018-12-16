@@ -2,4 +2,12 @@ import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-DATASETS_REPO = os.path.join(basedir, 'datasets/')
+
+class Config(object):
+    TRAIN_DATA_PATH = os.environ.get('TRAIN_DATA_PATH') or os.path.join(basedir, 'datasets/mnist_train.csv')
+    TEST_DATA_PATH = os.environ.get('TEST_DATA_PATH') or os.path.join(basedir, 'datasets/mnist_test.csv')
+    NN_INPUT_NODES = int(os.environ.get('NN_INPUT_NODES') or 784)
+    NN_HIDDEN_NODES = int(os.environ.get('NN_HIDDEN_NODES') or 100)
+    NN_OUTPUT_NODES = int(os.environ.get('NN_OUTPUT_NODES') or 10)
+    NN_LEARNING_RATE = float(os.environ.get('NN_LEARNING_RATE') or 0.2)
+    NN_LEARN_EPOCHS = int(os.environ.get('NN_LEARN_EPOCHS') or 2)

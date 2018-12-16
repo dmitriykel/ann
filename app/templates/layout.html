@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% if title %}
+        <title>{{ title }} - MNIST Data Neural Network</title>
+        {% else %}
+        <title>MNIST Data Neural Network</title>
+        {% endif %}
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+</html>
