@@ -15,8 +15,6 @@ class NeuralNetwork:
 
         self.activation_function = lambda x: scipy.special.expit(x)
 
-        pass
-
     def train(self, inputs_list, targets_list):
         inputs = np.array(inputs_list, ndmin=2).T
         targets = np.array(targets_list, ndmin=2).T
@@ -34,8 +32,6 @@ class NeuralNetwork:
                                      np.transpose(hidden_outputs))
         self.wih += self.lr * np.dot((hidden_errors * hidden_outputs * (1.0 - hidden_outputs)),
                                      np.transpose(inputs))
-
-        pass
 
     def query(self, inputs_list):
         inputs = np.array(inputs_list, ndmin=2).T

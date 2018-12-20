@@ -39,13 +39,13 @@ def check_nn_score(neural_network_obj):
     return scorecard_arr.sum() / scorecard_arr.size
 
 
-def recognize_img(neural_network_obj, image_filename):
-    outputs = neural_network_obj.query(img_to_matrix(image_filename))
+def recognize_img(neural_network_obj, image_path):
+    outputs = neural_network_obj.query(img_to_matrix(image_path))
     return np.argmax(outputs)
 
 
-def img_to_matrix(image_filename):
-    img_array = imageio.imread(image_filename, as_gray=True)
+def img_to_matrix(image_path):
+    img_array = imageio.imread(image_path, as_gray=True)
     img_data = 255.0 - img_array.reshape(784)
     return (img_data / 255.0 * 0.99) + 0.01
 

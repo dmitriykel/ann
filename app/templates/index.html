@@ -1,5 +1,18 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    {{ message }}
+    {% if form %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.image.label }}<br>
+            {{ form.image }}<br>
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% endif %}
+    <p>{{ nn_state }}</p>
+    {% if nn_check_result %}
+        <p>{{ nn_check_result }}</p>
+    {% endif %}
 {% endblock %}
