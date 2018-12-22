@@ -1,18 +1,18 @@
-import app
+from ada import config
 import imageio
 import numpy as np
 
 
 def train_nn(neural_network, epochs):
 
-    with open(app.config['TRAIN_DATA_PATH'], "r") as train_data_file:
+    with open(config.TRAIN_DATA_PATH, "r") as train_data_file:
         train_dataset = train_data_file.readlines()
 
     for epoch in range(epochs):
         for row in train_dataset:
             all_values = row.split(",")
             inputs = (np.asfarray(all_values[1:]) / 255.0 * 0.99) + 0.01
-            targets = np.zeros(app.config['NN_OUTPUT_NODES']) + 0.01
+            targets = np.zeros(config.NN_OUTPUT_NODES) + 0.01
             targets[int(all_values[0])] = 0.99
             neural_network.train(inputs, targets)
     return neural_network
@@ -20,7 +20,7 @@ def train_nn(neural_network, epochs):
 
 def check_nn_score(neural_network):
     scorecard = []
-    with open(app.config['TEST_DATA_PATH'], "r") as test_data_file:
+    with open(config.TEST_DATA_PATH, "r") as test_data_file:
         test_dataset = test_data_file.readlines()
     for row in test_dataset:
         all_values = row.split(",")
