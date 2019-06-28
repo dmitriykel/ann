@@ -1,6 +1,22 @@
-from ada import config
+from recognizer import config
 import imageio
 import numpy as np
+import os
+import config
+import urllib.request as request
+
+
+def download_data(train_data_url, test_data_url):
+    if not os.path.exists(config.TRAIN_DATA_PATH):
+        url = train_data_url
+        request.urlretrieve(url, config.TRAIN_DATA_PATH)
+        return "Train data uploaded"
+    elif not os.path.exists(config.TEST_DATA_PATH):
+        url = test_data_url
+        request.urlretrieve(url, config.TEST_DATA_PATH)
+        return "Test data uploaded"
+    else:
+        return "Data already exists"
 
 
 def train_nn(neural_network, epochs):
@@ -47,4 +63,3 @@ def img_to_matrix(image_path):
     img_array = imageio.imread(image_path, as_gray=True)
     img_data = 255.0 - img_array.reshape(784)
     return (img_data / 255.0 * 0.99) + 0.01
-

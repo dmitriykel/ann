@@ -3,7 +3,7 @@ from flask import render_template, current_app
 from app.main import bp
 from app.main.forms import UploadImageForm
 from werkzeug.utils import secure_filename
-from ada import utils, nn
+from recognizer import utils, nn
 
 
 @bp.route('/', methods=['GET', 'POST'])
