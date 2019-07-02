@@ -1,22 +1,25 @@
-from recognizer import config
 import imageio
 import numpy as np
 import os
-import config
+from recognizer import config
 import urllib.request as request
 
 
 def download_data(train_data_url, test_data_url):
+    datasets_dir = os.path.join(config.basedir, 'datasets')
+
+    if not os.path.exists(datasets_dir):
+        os.mkdir(datasets_dir)
+
     if not os.path.exists(config.TRAIN_DATA_PATH):
         url = train_data_url
         request.urlretrieve(url, config.TRAIN_DATA_PATH)
-        return "Train data uploaded"
-    elif not os.path.exists(config.TEST_DATA_PATH):
+
+    if not os.path.exists(config.TEST_DATA_PATH):
         url = test_data_url
         request.urlretrieve(url, config.TEST_DATA_PATH)
-        return "Test data uploaded"
-    else:
-        return "Data already exists"
+
+    return "Train and test data on board"
 
 
 def train_nn(neural_network, epochs):
